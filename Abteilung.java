@@ -29,6 +29,10 @@ class Abteilung
         this.socke = socke;
     }
     
+    public void setzeFundSocken(List<Stoppersocken> socken){
+        this.socken = socken;
+    }
+    
     public void setzeFundsachen(List<Schlüssel> fundsachen) {
         this.fundsachen = fundsachen;
     }

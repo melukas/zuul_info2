@@ -82,11 +82,16 @@ public class Spielverwaltung {
         i.setzeSchlüssel(a1);
         
         Stoppersocken socke = new Stoppersocken();
-        // // a.setzeSocken(socke);
+        a.setzeSocken(socke);
+        
+        List<Stoppersocken> socken = new ArrayList<>();
+        socken.add(socke);
+        a.setzeFundSocken(socken);
         
         List<Schlüssel> list1 = new ArrayList<>();
         list1.add(a1);
         e.setzeFundsachen(list1);
+        
 
     }
 
