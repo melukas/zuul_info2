@@ -76,7 +76,7 @@ public class Spielverwaltung {
         v.setzeAusgang(Befehlsdetail.rechts,w );
         x.setzeAusgang(Befehlsdetail.hinten,y );
 
-        y.setIstAuﬂenwelt(true);
+        y.setIstAu√üenwelt(true);
 
         Schluessel a1 = new Schluessel();
         i.setzeSchluessel(a1);

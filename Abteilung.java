@@ -12,7 +12,7 @@ class Abteilung
     private Schluessel schluessel;
     private Stoppersocken socke;
     private List<Schluessel> fundsachen;
-    private boolean istAuﬂenwelt = false;
+    private boolean istAu√üenwelt = false;
     private List<Stoppersocken> socken;
     
     public Abteilung(String name) 
@@ -55,7 +55,7 @@ class Abteilung
 
     private String gibAbteilungenAlsString()
     {
-        String ergebnis = "Durchg‰nge:";
+        String ergebnis = "DurchgÔøΩnge:";
         Set<Befehlsdetail> keys = durchgaenge.keySet();
         for(Iterator<Befehlsdetail> iter = keys.iterator(); iter.hasNext(); )
             ergebnis += " " + iter.next();
@@ -63,14 +63,14 @@ class Abteilung
     }
     
     public boolean getIstAu√üenwelt() {
-        return istAuﬂenwelt;
+        return istAu√üenwelt;
     }
     
     public List<Stoppersocken> getSocken(){
          return socken;
     }
-    public void setIstAuﬂenwelt(boolean istAu√üenwelt) {
-        this.istAuﬂenwelt = istAu√üenwelt;
+    public void setIstAu√üenwelt(boolean istAu√üenwelt) {
+        this.istAu√üenwelt = istAu√üenwelt;
     }
     
     public boolean istAbgeschlossen() {
