@@ -1,11 +1,11 @@
 import java.util.Random;
 
-public class Schlüssel extends Gegenstand {
+public class Schluessel extends Gegenstand {
 	
 	private long key;
 	
-	public Schlüssel() {
-	    super("Schlüssel");
+	public Schluessel() {
+	    super("Schluessel");
 		Random rar = new Random();
 		this.key = rar.nextLong();
 		

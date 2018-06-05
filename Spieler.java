@@ -7,7 +7,7 @@ public class Spieler {
     
     private Abteilung aktuelleAbteilung;
     
-    private List<Schlüssel> inventar;
+    private List<Schluessel> inventar;
     
     private List<Stoppersocken> socken;
     
@@ -17,11 +17,11 @@ public class Spieler {
         this.socken = new ArrayList<>();
     }
 
-    public List<Schlüssel> getInventar() {
+    public List<Schluessel> getInventar() {
         return inventar;
     }
 
-    public void setInventar(List<Schlüssel> inventar) {
+    public void setInventar(List<Schluessel> inventar) {
         this.inventar = inventar;
     }
 

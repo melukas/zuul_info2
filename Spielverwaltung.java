@@ -78,8 +78,8 @@ public class Spielverwaltung {
 
         y.setIstAußenwelt(true);
 
-        Schlüssel a1 = new Schlüssel();
-        i.setzeSchlüssel(a1);
+        Schluessel a1 = new Schluessel();
+        i.setzeSchluessel(a1);
         
         Stoppersocken socke = new Stoppersocken();
         a.setzeSocken(socke);
@@ -88,7 +88,7 @@ public class Spielverwaltung {
         socken.add(socke);
         a.setzeFundSocken(socken);
         
-        List<Schlüssel> list1 = new ArrayList<>();
+        List<Schluessel> list1 = new ArrayList<>();
         list1.add(a1);
         e.setzeFundsachen(list1);
         
@@ -156,16 +156,16 @@ public class Spielverwaltung {
     private boolean wechsleRaum(Befehlsdetail abteilung) {
         if(spieler.getAktuelleAbteilung().durchgangVorhanden(abteilung)) {
             if(spieler.getAktuelleAbteilung().gibDurchgang(abteilung).istAbgeschlossen()) {
-                List<Schlüssel> Schlüssel = spieler.getAktuelleAbteilung().zutrittErlaubt(spieler.getInventar());
-                if(Schlüssel==null) {
-                    Spiel.console("Sie haben den passenden Schlüssel leider nicht dabei!");
+                List<Schluessel> Schluessel = spieler.getAktuelleAbteilung().zutrittErlaubt(spieler.getInventar());
+                if(Schluessel==null) {
+                    Spiel.console("Sie haben den passenden Schluessel leider nicht dabei!");
                     return false;
                 }
-                if(Schlüssel.equals(spieler.getInventar())) {
+                if(Schluessel.equals(spieler.getInventar())) {
                     Spiel.console("Die"+spieler.getAktuelleAbteilung().gibDurchgang(abteilung)+" ist leider abgeschlossen.\n");
                     return false;
                 }
-                spieler.setInventar(Schlüssel);
+                spieler.setInventar(Schluessel);
                 Spiel.console("Sie haben den Raum erfolgreich aufgeschlossen.\n");
             }
             if(spieler.getAktuelleAbteilung().gibDurchgang(abteilung).getIstAußenwelt()) {
@@ -181,17 +181,20 @@ public class Spielverwaltung {
     }
 
     private boolean suche() {
-        List<Schlüssel> funde;
+        List<Schluessel> funde;
         List<Stoppersocken> socken;
         if((funde = spieler.getAktuelleAbteilung().nehmeFundsachen())!=null) {
 
             spieler.getInventar().addAll(funde);
+
             Spiel.console("Sie haben einen Schlüssel gefunden!\n");
             
             return true;
         }
         
-        if((socken = spieler.getAktuelleAbteilung().getSocken())!=null){          
+      
+            if((socken = spieler.getAktuelleAbteilung().getSocken())!=null){
+
                 spieler.getStoppersocken().addAll(socken);
                 Spiel.console("Sie haben einen Stoppersocken gefunden!\n");
                    return true;
