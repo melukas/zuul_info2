@@ -31,6 +31,7 @@ public class Hausmeister extends NPC
             getSpielverwaltung().npcLoeschen(this);
         }else{
             sb.append("Das war leider die falsche Antwort! \nSo lässt dich der Hausmeister nicht vorbei.");
+            treffeSpieler(sp);
         }
 
         return sb.toString();
