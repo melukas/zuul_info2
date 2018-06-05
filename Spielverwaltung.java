@@ -11,11 +11,16 @@ public class Spielverwaltung {
     private Befehlsverarbeitung verarbeitung;
     private boolean quitBefehl;
     private Spieler spieler;
+    private List<NPC> npcs;
+    private List<Abteilung> abteilungen;
+
 
     public Spielverwaltung(String name) {
         quitBefehl = false;
         spieler = new Spieler(name);
         verarbeitung = new Befehlsverarbeitung();
+        abteilungen = new ArrayList<>();
+        npcs = new ArrayList<>();
         kaufhausAnlegen();
         befehlsSetup();
     }
@@ -47,6 +52,8 @@ public class Spielverwaltung {
         Abteilung w = new Abteilung("Eisdiele");
         Abteilung x = new Abteilung("Schwimmbadabteilung");
         Abteilung y = new Abteilung("Ausgang");
+
+        abteilungen.addAll(Arrays.asList(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y));
 
         spieler.setAktuelleAbteilung(a);
 
@@ -92,7 +99,10 @@ public class Spielverwaltung {
         list1.add(a1);
         e.setzeFundsachen(list1);
         
-
+        Putzfrau p1 = new Putzfrau("Ursula", m, this);
+	npcHinzufuegen(p1);
+	Hausmeister h1 = new Hausmeister("Peter", u, this);
+	npcHinzufuegen(h1);
     }
 
     private void befehlsSetup() {
@@ -230,4 +240,15 @@ public class Spielverwaltung {
         return true;
     }
 
+    private void npcHinzufuegen(NPC npc) {
+	this.npcs.add(npc);
+    }
+	
+    public void npcLoeschen(NPC npc) {
+	this.npcs.remove(npc);
+    }
+    
+    public List<Abteilung> getAbteilungen(){
+    	return this.abteilungen;
+    }
 }

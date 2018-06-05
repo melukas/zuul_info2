@@ -1,11 +1,11 @@
 public class Hausmeister extends NPC
 {
-    public Hausmeister(Abteilung aktuelleAbteilung,Spielverwaltung spielverwaltung) {
-        super(aktuelleAbteilung, spielverwaltung);
+    public Hausmeister(String name, Abteilung aktuelleAbteilung,Spielverwaltung spielverwaltung) {
+        super(name, aktuelleAbteilung, spielverwaltung);
     }
 
-    public boolean treffeSpieler(Spieler sp) {
-        return false;
+    public String treffeSpieler(Spieler sp) {
+        return "";
         
     }    
 }
