@@ -6,6 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Die Klasse Spielverwaltung dient der allgemeinen Verwaltung
+ * während des gesamten Spieles
+ * @author Lukas Kiffmeyer, Marie Hölscher
+ * @version 1
+ */
 public class Spielverwaltung {
 
     private Befehlsverarbeitung verarbeitung;
@@ -15,6 +21,12 @@ public class Spielverwaltung {
     private List<Abteilung> abteilungen;
 
 
+    /**
+     * Konstruktor der Klasse Spielverwaltung,
+     * erzeugt einen neuen Spieler und legt das Kaufhaus
+     * sowie die Befehlsverarbeitung an
+     * @param name Name des Spielers
+     */
     public Spielverwaltung(String name) {
         quitBefehl = false;
         spieler = new Spieler(name);
@@ -25,6 +37,12 @@ public class Spielverwaltung {
         befehlsSetup();
     }
 
+    /**
+     * Methode zum Kaufhaus anlegen.
+     * Es werden alle Abteilungen angelegt,
+     * sowie Ausgänge gesetzt. Außerdem werden 
+     * Ausgang, Schlüssel und Stoppersocken verteilt.
+     */
     private void kaufhausAnlegen(){
         //Hauptsache weiblicher Artikel
         Abteilung a = new Abteilung("Aussichtsplattform");
@@ -85,7 +103,9 @@ public class Spielverwaltung {
 
         y.setIstAußenwelt(true);
         
-        Stoppersocken socke = new Stoppersocken();   
+        Stoppersocken socke = new Stoppersocken();
+        
+
         List<Stoppersocken> socken = new ArrayList<>();
         socken.add(socke);
         a.setzeFundSocken(socken);
@@ -103,6 +123,9 @@ public class Spielverwaltung {
 	npcHinzufuegen(h1);
     }
 
+    /**
+     * Methode, die alle Befehlsmöglichkeiten festlegt.
+     */
     private void befehlsSetup() {
         Map<Grundbefehl,List<Befehlsdetail>> befehle = new HashMap<>();
         List<Befehlsdetail> richtungen = new ArrayList<>();
@@ -114,6 +137,10 @@ public class Spielverwaltung {
         Befehl.setBefehle(befehle);
     }
 
+    /**
+     * Methode die das Spiel zum Startet und solange
+     * fortläuft bis das Spiel beendet wurde.
+     */
     public void start() {
         spielBeginn();
         while(spielAktiv()) {
@@ -122,6 +149,11 @@ public class Spielverwaltung {
         }
     }
 
+    /**
+     * Methode die zum Spielbeginn hin aufgerufen wird,
+     * Sie erzeugt den Einstiegstext und lässt ihn auf den 
+     * Console ausgeben.
+     */
     private void spielBeginn()
     {
         StringBuilder st = new StringBuilder();
@@ -132,6 +164,10 @@ public class Spielverwaltung {
         Spiel.console(st.toString());
     }
 
+    /**
+     * Methode die Befehlsanfragen bearbeitet, indem Sie
+     * die Eingaben des Spielers abfängt und weiter überprüfen lässt
+     */
     private void verarbeiteBefehlsanfragen() {
 
         Spiel.console(spieler.getAktuelleAbteilung().gibLangeBeschreibung());
@@ -152,6 +188,11 @@ public class Spielverwaltung {
 
     }
 
+    /**
+     * Die Methode führt den übergebenen Befehl aus
+     * @param b auszuführender Befehl
+     * @return Ob der Befehl ausgeführt wurde
+     */
     private boolean befehlsAusfuehrung(Befehl b) {
         switch(b.getGrundbefehl()) {
             case gehe: return wechsleRaum(b.getBefehlsdetail());
@@ -162,6 +203,13 @@ public class Spielverwaltung {
         }
     }
 
+    /**
+     * Methode, die aufgerufen wird, wenn der Grundbefehl "gehe"
+     * war. Denn dann wird mit dem Befehlsdetail in einen neuen Raum 
+     * in die jeweilige Abteilung gewechselt
+     * @param abteilung Richtung(Norden, Osten, Süden, Westen)
+     * @return Ob die Abteilung gewechselt wurde
+     */
     private boolean wechsleRaum(Befehlsdetail abteilung) {
         if(spieler.getAktuelleAbteilung().durchgangVorhanden(abteilung)) {
             if(spieler.getAktuelleAbteilung().gibDurchgang(abteilung).istAbgeschlossen()) {
@@ -204,6 +252,12 @@ public class Spielverwaltung {
 		}
     }
 
+    /**
+     * Die Methode wird bei Eingabe des Grundbefehls "suche" aufgerufen.
+     * Hier wird dann überprüft ob sich in dem Raum Gegenstände wie z.B. Schlüssel 
+     * oder Stoppersocken befinden. Diesen werden dann dem Inventar des Spielers hinzugefügt.
+     * @return Ob die Suche erfolgreich war
+     */
     private boolean suche() {
         List<Schluessel> funde;
         List<Stoppersocken> socken;
@@ -227,24 +281,41 @@ public class Spielverwaltung {
         return false;
     }
 
+    /**
+     * Die Methode wird bei Eingabe des Grundbefehls "hilfe" aufgerufen und 
+     * gibt einen Hilfetext zu den möglichen Befehlen aus.
+     */
     private boolean gibHilfetext() {
         Spiel.console("Folgende Befehle können eingegeben werden:\n- gehe vorne \n- gehe hinten \n- gehe links\n- gehe rechts\n- gehe oben \n- gehe unten\n"+
         "- suche\n");
         return true;
     }
 
+    /**
+     * Die Methode wird bei Eingabe des Grundbefehls "beenden" aufgerufen und 
+     * beendet das Spiel.
+     */
     private boolean quit() {
         this.quitBefehl = true;
         Spiel.console("Sie haben soeben das Spiel beendet.\n");
         return true;
     }
 
+    /**
+     * Methode wird aufgerufen wenn der Spieler sich in der 
+     * Abteilung "Ausgang" befindet. Hier wird dann ein Text ausgegeben 
+     * sowie das Spiel beendet.
+     */
     private void ausgangGefunden() {
         Spiel.console("*** Herzlichen Glückwunsch ***\n");
         Spiel.console("Sie haben den Ausgang gefunden!\n");
         this.quitBefehl = true;
     }
 
+    /**
+     * Diese Methode überprüft ob das Spiel noch aktiv ist.
+     * @return Ob Spiel noch aktiv
+     */
     private boolean spielAktiv() {
         if(quitBefehl) {
             Spiel.console("Viel Spaß noch und bis zum nächsten Mal!");
