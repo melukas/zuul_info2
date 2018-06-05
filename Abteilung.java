@@ -9,10 +9,10 @@ class Abteilung
 {
     private String name;
     private Map<Befehlsdetail,Abteilung> durchgaenge;
-    private Schlüssel Schlüssel;
+    private Schluessel schluessel;
     private Stoppersocken socke;
-    private List<Schlüssel> fundsachen;
-    private boolean istAußenwelt = false;
+    private List<Schluessel> fundsachen;
+    private boolean istAu�enwelt = false;
     private List<Stoppersocken> socken;
     
     public Abteilung(String name) 
@@ -21,8 +21,8 @@ class Abteilung
         durchgaenge = new HashMap<>();
     }
     
-    public void setzeSchlüssel(Schlüssel key) {
-        this.Schlüssel = key;
+    public void setzeSchluessel(Schluessel key) {
+        this.schluessel = key;
     }
     
     public void setzeSocken(Stoppersocken socke){
@@ -33,7 +33,7 @@ class Abteilung
         this.socken = socken;
     }
     
-    public void setzeFundsachen(List<Schlüssel> fundsachen) {
+    public void setzeFundsachen(List<Schluessel> fundsachen) {
         this.fundsachen = fundsachen;
     }
 
@@ -55,7 +55,7 @@ class Abteilung
 
     private String gibAbteilungenAlsString()
     {
-        String ergebnis = "Durchgänge:";
+        String ergebnis = "Durchg�nge:";
         Set<Befehlsdetail> keys = durchgaenge.keySet();
         for(Iterator<Befehlsdetail> iter = keys.iterator(); iter.hasNext(); )
             ergebnis += " " + iter.next();
@@ -63,31 +63,31 @@ class Abteilung
     }
     
     public boolean getIstAußenwelt() {
-        return istAußenwelt;
+        return istAu�enwelt;
     }
     
     public List<Stoppersocken> getSocken(){
          return socken;
     }
-    public void setIstAußenwelt(boolean istAußenwelt) {
-        this.istAußenwelt = istAußenwelt;
+    public void setIstAu�enwelt(boolean istAußenwelt) {
+        this.istAu�enwelt = istAußenwelt;
     }
     
     public boolean istAbgeschlossen() {
-        return this.Schlüssel != null;
+        return this.schluessel != null;
     }
     
-    public List<Schlüssel> nehmeFundsachen(){
-        List<Schlüssel> var = fundsachen;
+    public List<Schluessel> nehmeFundsachen(){
+        List<Schluessel> var = fundsachen;
         fundsachen = new ArrayList<>();
         return var;
     }
     
-    public List<Schlüssel> zutrittErlaubt(List<Schlüssel> key) {
-        if(Schlüssel!=null) {
-            if(key.contains(Schlüssel)) {
-                key.remove(Schlüssel);
-                this.Schlüssel = null;
+    public List<Schluessel> zutrittErlaubt(List<Schluessel> key) {
+        if(schluessel!=null) {
+            if(key.contains(schluessel)) {
+                key.remove(schluessel);
+                this.schluessel = null;
             }
             return key;
         }
