@@ -75,31 +75,31 @@ public class Spielverwaltung {
 
         spieler.setAktuelleAbteilung(a);
 
-        a.setzeAusgang(Befehlsdetail.vorne, b);
-        b.setzeAusgang(Befehlsdetail.links, c);
-        c.setzeAusgang(Befehlsdetail.vorne, d);
-        d.setzeAusgang(Befehlsdetail.rechts, e);
-        e.setzeAusgang(Befehlsdetail.rechts, f);
-        f.setzeAusgang(Befehlsdetail.hinten, g);
-        g.setzeAusgang(Befehlsdetail.hinten, h);
-        h.setzeAusgang(Befehlsdetail.links, b);
-        i.setzeAusgang(Befehlsdetail.links, g);
-        j.setzeAusgang(Befehlsdetail.hinten, i);
+        a.setzeAusgang(Befehlsdetail.sueden, b);
+        b.setzeAusgang(Befehlsdetail.westen, c);
+        c.setzeAusgang(Befehlsdetail.sueden, d);
+        d.setzeAusgang(Befehlsdetail.osten, e);
+        e.setzeAusgang(Befehlsdetail.osten, f);
+        f.setzeAusgang(Befehlsdetail.norden, g);
+        g.setzeAusgang(Befehlsdetail.norden, h);
+        h.setzeAusgang(Befehlsdetail.westen, b);
+        i.setzeAusgang(Befehlsdetail.westen, g);
+        j.setzeAusgang(Befehlsdetail.norden, i);
         l.setzeAusgang(Befehlsdetail.oben, j);
-        l.setzeAusgang(Befehlsdetail.vorne, m);
-        m.setzeAusgang(Befehlsdetail.vorne, o);
-        m.setzeAusgang(Befehlsdetail.rechts, p);
-        m.setzeAusgang(Befehlsdetail.links, k);
-        o.setzeAusgang(Befehlsdetail.links, n);
+        l.setzeAusgang(Befehlsdetail.sueden, m);
+        m.setzeAusgang(Befehlsdetail.sueden, o);
+        m.setzeAusgang(Befehlsdetail.osten, p);
+        m.setzeAusgang(Befehlsdetail.westen, k);
+        o.setzeAusgang(Befehlsdetail.westen, n);
         n.setzeAusgang(Befehlsdetail.unten, q);
-        q.setzeAusgang(Befehlsdetail.vorne,r );
-        r.setzeAusgang(Befehlsdetail.links,s );
-        s.setzeAusgang(Befehlsdetail.vorne,t );
-        t.setzeAusgang(Befehlsdetail.rechts,x );
-        t.setzeAusgang(Befehlsdetail.vorne,u );
-        u.setzeAusgang(Befehlsdetail.rechts,v );
-        v.setzeAusgang(Befehlsdetail.rechts,w );
-        x.setzeAusgang(Befehlsdetail.hinten,y );
+        q.setzeAusgang(Befehlsdetail.sueden,r );
+        r.setzeAusgang(Befehlsdetail.westen,s );
+        s.setzeAusgang(Befehlsdetail.sueden,t );
+        t.setzeAusgang(Befehlsdetail.osten,x );
+        t.setzeAusgang(Befehlsdetail.sueden,u );
+        u.setzeAusgang(Befehlsdetail.osten,v );
+        v.setzeAusgang(Befehlsdetail.osten,w );
+        x.setzeAusgang(Befehlsdetail.norden,y );
 
         y.setIstAußenwelt(true);
         
@@ -160,7 +160,7 @@ public class Spielverwaltung {
         st.append("Herzlich Willkommen zum Kaufhaus-Spiel!\n\nSie befinden sich in einem Kaufhaus und müssen den Ausgang"+
         " finden. \nLeider wird Ihnen dies nicht so einfach fallen, \ndenn in den vielen verschiedenen Abteilungen gibt es viele Hindernisse. \n"+
         "Ihnen wird immer angezeigt in welchem Raum Sie sich aktuell befinden.\n\nFolgende Eingabebefehle sind erlaubt:\n"+
-        "- gehe vorne \n- gehe hinten \n- gehe links\n- gehe rechts\n- gehe oben \n- gehe unten\n- suche \n- hilfe\n- beenden\n\nLos gehts und viel Spaß!\n");
+        "- gehe sueden \n- gehe norden \n- gehe westen\n- gehe osten\n- gehe oben \n- gehe unten\n- suche \n- hilfe\n- beenden\n\nLos gehts und viel Spaß!\n");
         Spiel.console(st.toString());
     }
 
@@ -247,7 +247,9 @@ public class Spielverwaltung {
     
     private void bewegeNPCs() {
         for(NPC npc : npcs) {
+            
             npc.wechsleAbteilung();
+            Spiel.console(npc.getName()+":"+npc.getAktuelleAbteilung().gibName());
         }
     }
 
