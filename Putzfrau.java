@@ -14,7 +14,7 @@ public class Putzfrau extends NPC
 		
 		if(sp.getStoppersocken() != null) {
 			Random rar = new Random();
-			st.append("Leider sind Sie auf ihrem firsch gewischten Boden ausgerutscht");
+			st.append("Leider sind Sie auf ihrem frisch gewischten Boden ausgerutscht");
 			sp.setAktuelleAbteilung(getSpielverwaltung().getAbteilungen().get(rar.nextInt(getSpielverwaltung().getAbteilungen().size())));
 			st.append(" und in der ");
 			st.append(sp.getAktuelleAbteilung().gibName());

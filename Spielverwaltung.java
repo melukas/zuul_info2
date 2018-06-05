@@ -99,7 +99,7 @@ public class Spielverwaltung {
         list1.add(a1);
         e.setzeFundsachen(list1);
         
-        Putzfrau p1 = new Putzfrau("Ursula", m, this);
+        Putzfrau p1 = new Putzfrau("Ursula", k, this);
 	npcHinzufuegen(p1);
 	Hausmeister h1 = new Hausmeister("Peter", u, this);
 	npcHinzufuegen(h1);
@@ -120,6 +120,7 @@ public class Spielverwaltung {
         spielBeginn();
         while(spielAktiv()) {
             verarbeiteBefehlsanfragen();
+            bewegeNPCs();
         }
     }
 
@@ -182,12 +183,28 @@ public class Spielverwaltung {
                 ausgangGefunden();
             }
             spieler.setAktuelleAbteilung(spieler.getAktuelleAbteilung().gibDurchgang(abteilung));
+            Spiel.console(fuehreKollisionskontrolleDurch());
             return true;
         }
         else {
             Spiel.console("Hier geht es nicht lang.\n");
             return false;
         }
+    }
+    
+    private String fuehreKollisionskontrolleDurch() {
+    	for(NPC npc : npcs) {
+			if(npc.getAktuelleAbteilung().equals(spieler.getAktuelleAbteilung())) {
+				return npc.treffeSpieler(spieler);
+			}
+		}
+    	return "\n";
+    }
+    
+    private void bewegeNPCs() {
+    	for(NPC npc : npcs) {
+			npc.wechsleAbteilung();
+		}
     }
 
     private boolean suche() {
@@ -203,7 +220,7 @@ public class Spielverwaltung {
         }
         
       
-            if((socken = spieler.getAktuelleAbteilung().getSocken())!=null){
+        if((socken = spieler.getAktuelleAbteilung().getSocken())!=null){
 
                 spieler.getStoppersocken().addAll(socken);
                 Spiel.console("Sie haben einen Stoppersocken gefunden!\n");

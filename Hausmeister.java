@@ -5,7 +5,7 @@ public class Hausmeister extends NPC
     }
 
     public String treffeSpieler(Spieler sp) {
-        return "";
+        return "Du bist auf den Hausmeister getroffen!\n";
         
     }    
 }
