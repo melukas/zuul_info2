@@ -14,6 +14,7 @@ public class Spieler {
     public Spieler(String name) {
         this.name = name;
         this.inventar = new ArrayList<>();
+        this.socken = new ArrayList<>();
     }
 
     public List<Schlüssel> getInventar() {

@@ -67,8 +67,11 @@ class Abteilung
     }
     
     public List<Stoppersocken> getSocken(){
-         return socken;
+         List<Stoppersocken> var = socken;
+         socken = new ArrayList<>();
+         return var;
     }
+    
     public void setIstAußenwelt(boolean istAußenwelt) {
         this.istAußenwelt = istAußenwelt;
     }

@@ -116,7 +116,10 @@ public class Spielverwaltung {
     private void spielBeginn()
     {
         StringBuilder st = new StringBuilder();
-        st.append("Beginntext");
+        st.append("Herzlich Willkommen zum Kaufhaus-Spiel!\n\nSie befinden sich in einem Kaufhaus und müssen den Ausgang"+
+        " finden. \nLeider wird Ihnen dies nicht so einfach fallen, \ndenn in den vielen verschiedenen Abteilungen gibt es viele Hindernisse. \n"+
+        "Ihnen wird immer angezeigt in welchem Raum Sie sich aktuell befinden.\n\nFolgende Eingabebefehle sind erlaubt:\n"+
+        "- gehe vorne \n- gehe hinten \n- gehe links\n- gehe rechts\n- gehe oben \n- gehe unten\n- suche \n- hilfe\n- beenden\n\nLos gehts und viel Spaß!\n");
         Spiel.console(st.toString());
     }
 
@@ -184,12 +187,14 @@ public class Spielverwaltung {
 
             spieler.getInventar().addAll(funde);
             Spiel.console("Sie haben einen Schlüssel gefunden!\n");
-            if((socken = spieler.getAktuelleAbteilung().getSocken())!=null){
+            
+            return true;
+        }
+        
+        if((socken = spieler.getAktuelleAbteilung().getSocken())!=null){          
                 spieler.getStoppersocken().addAll(socken);
                 Spiel.console("Sie haben einen Stoppersocken gefunden!\n");
                    return true;
-            }
-            return true;
         }
 
         Spiel.console("Hier liegt leider nichts.\n");
