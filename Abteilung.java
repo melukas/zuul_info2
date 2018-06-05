@@ -9,9 +9,11 @@ class Abteilung
 {
     private String name;
     private Map<Befehlsdetail,Abteilung> durchgaenge;
-    private Schlüssel schlüssel;
+    private Schlüssel Schlüssel;
+    private Stoppersocken socke;
     private List<Schlüssel> fundsachen;
     private boolean istAußenwelt = false;
+    private List<Stoppersocken> socken;
     
     public Abteilung(String name) 
     {
@@ -20,11 +22,15 @@ class Abteilung
     }
     
     public void setzeSchlüssel(Schlüssel key) {
-    	this.schlüssel = key;
+        this.Schlüssel = key;
+    }
+    
+    public void setzeSocken(Stoppersocken socke){
+        this.socke = socke;
     }
     
     public void setzeFundsachen(List<Schlüssel> fundsachen) {
-    	this.fundsachen = fundsachen;
+        this.fundsachen = fundsachen;
     }
 
     public void setzeAusgang(Befehlsdetail richtung, Abteilung abteilung) 
@@ -53,44 +59,47 @@ class Abteilung
     }
     
     public boolean getIstAußenwelt() {
-    	return istAußenwelt;
+        return istAußenwelt;
     }
     
+    public List<Stoppersocken> getSocken(){
+         return socken;
+    }
     public void setIstAußenwelt(boolean istAußenwelt) {
-    	this.istAußenwelt = istAußenwelt;
+        this.istAußenwelt = istAußenwelt;
     }
     
     public boolean istAbgeschlossen() {
-    	return this.schlüssel != null;
+        return this.Schlüssel != null;
     }
     
     public List<Schlüssel> nehmeFundsachen(){
-    	List<Schlüssel> var = fundsachen;
-    	fundsachen = new ArrayList<>();
-    	return var;
+        List<Schlüssel> var = fundsachen;
+        fundsachen = new ArrayList<>();
+        return var;
     }
     
     public List<Schlüssel> zutrittErlaubt(List<Schlüssel> key) {
-    	if(schlüssel!=null) {
-    		if(key.contains(schlüssel)) {
-    			key.remove(schlüssel);
-    			this.schlüssel = null;
-    		}
-    		return key;
-    	}
-    	return null;
-    	
+        if(Schlüssel!=null) {
+            if(key.contains(Schlüssel)) {
+                key.remove(Schlüssel);
+                this.Schlüssel = null;
+            }
+            return key;
+        }
+        return null;
+        
     }
     
     
     
     public boolean durchgangVorhanden(Befehlsdetail richtung) {
-    	if(durchgaenge.containsKey(richtung)) {
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
+        if(durchgaenge.containsKey(richtung)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public Abteilung gibDurchgang(Befehlsdetail richtung) 
