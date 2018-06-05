@@ -17,6 +17,9 @@ public class Spielverwaltung {
     private Befehlsverarbeitung verarbeitung;
     private boolean quitBefehl;
     private Spieler spieler;
+    private List<NPC> npcs;
+    private List<Abteilung> abteilungen;
+
 
     /**
      * Konstruktor der Klasse Spielverwaltung,
@@ -28,6 +31,8 @@ public class Spielverwaltung {
         quitBefehl = false;
         spieler = new Spieler(name);
         verarbeitung = new Befehlsverarbeitung();
+        abteilungen = new ArrayList<>();
+        npcs = new ArrayList<>();
         kaufhausAnlegen();
         befehlsSetup();
     }
@@ -66,6 +71,8 @@ public class Spielverwaltung {
         Abteilung x = new Abteilung("Schwimmbadabteilung");
         Abteilung y = new Abteilung("Ausgang");
 
+        abteilungen.addAll(Arrays.asList(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y));
+
         spieler.setAktuelleAbteilung(a);
 
         a.setzeAusgang(Befehlsdetail.vorne, b);
@@ -101,6 +108,7 @@ public class Spielverwaltung {
         
         Stoppersocken socke = new Stoppersocken();
         
+
         List<Stoppersocken> socken = new ArrayList<>();
         socken.add(socke);
         a.setzeFundSocken(socken);
@@ -109,7 +117,10 @@ public class Spielverwaltung {
         list1.add(a1);
         e.setzeFundsachen(list1);
         
-
+        Putzfrau p1 = new Putzfrau("Ursula", k, this);
+	npcHinzufuegen(p1);
+	Hausmeister h1 = new Hausmeister("Peter", u, this);
+	npcHinzufuegen(h1);
     }
 
     /**
@@ -134,6 +145,7 @@ public class Spielverwaltung {
         spielBeginn();
         while(spielAktiv()) {
             verarbeiteBefehlsanfragen();
+            bewegeNPCs();
         }
     }
 
@@ -217,12 +229,28 @@ public class Spielverwaltung {
                 ausgangGefunden();
             }
             spieler.setAktuelleAbteilung(spieler.getAktuelleAbteilung().gibDurchgang(abteilung));
+            Spiel.console(fuehreKollisionskontrolleDurch());
             return true;
         }
         else {
             Spiel.console("Hier geht es nicht lang.\n");
             return false;
         }
+    }
+    
+    private String fuehreKollisionskontrolleDurch() {
+    	for(NPC npc : npcs) {
+			if(npc.getAktuelleAbteilung().equals(spieler.getAktuelleAbteilung())) {
+				return npc.treffeSpieler(spieler);
+			}
+		}
+    	return "\n";
+    }
+    
+    private void bewegeNPCs() {
+    	for(NPC npc : npcs) {
+			npc.wechsleAbteilung();
+		}
     }
 
     /**
@@ -244,7 +272,7 @@ public class Spielverwaltung {
         }
         
       
-            if((socken = spieler.getAktuelleAbteilung().getSocken())!=null){
+        if((socken = spieler.getAktuelleAbteilung().getSocken())!=null){
 
                 spieler.getStoppersocken().addAll(socken);
                 Spiel.console("Sie haben einen Stoppersocken gefunden!\n");
@@ -298,4 +326,15 @@ public class Spielverwaltung {
         return true;
     }
 
+    private void npcHinzufuegen(NPC npc) {
+	this.npcs.add(npc);
+    }
+	
+    public void npcLoeschen(NPC npc) {
+	this.npcs.remove(npc);
+    }
+    
+    public List<Abteilung> getAbteilungen(){
+    	return this.abteilungen;
+    }
 }

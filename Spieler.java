@@ -74,6 +74,8 @@ public class Spieler {
        return socken;
     }
     
+    public void setStoppersocken(List<Stoppersocken> stoppersocken) {
+        this.socken = stoppersocken;
+    }
     
-
 }

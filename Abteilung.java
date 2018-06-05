@@ -1,4 +1,4 @@
- import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -14,7 +14,6 @@ class Abteilung
     private String name;
     private Map<Befehlsdetail,Abteilung> durchgaenge;
     private Schluessel schluessel;
-    private Stoppersocken socke;
     private List<Schluessel> fundsachen;
     private boolean istAußenwelt = false;
     private List<Stoppersocken> socken;
@@ -37,6 +36,7 @@ class Abteilung
         this.schluessel = key;
     }
     
+
     /**
      * Methode setzt die Liste der gefundenen Stoppersocken neu.
      * @param socken Liste der neuen Stoppersocken
