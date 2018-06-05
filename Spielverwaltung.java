@@ -84,14 +84,14 @@ public class Spielverwaltung {
         x.setzeAusgang(Befehlsdetail.hinten,y );
 
         y.setIstAußenwelt(true);
-
-        Schluessel a1 = new Schluessel();
-        i.setzeSchluessel(a1);
         
         Stoppersocken socke = new Stoppersocken();   
         List<Stoppersocken> socken = new ArrayList<>();
         socken.add(socke);
         a.setzeFundSocken(socken);
+        
+        Schluessel a1 = new Schluessel();
+        i.setzeSchluessel(a1);
         
         List<Schluessel> list1 = new ArrayList<>();
         list1.add(a1);
@@ -165,23 +165,22 @@ public class Spielverwaltung {
     private boolean wechsleRaum(Befehlsdetail abteilung) {
         if(spieler.getAktuelleAbteilung().durchgangVorhanden(abteilung)) {
             if(spieler.getAktuelleAbteilung().gibDurchgang(abteilung).istAbgeschlossen()) {
-                List<Schluessel> Schluessel = spieler.getAktuelleAbteilung().zutrittErlaubt(spieler.getInventar());
-                if(Schluessel==null) {
+                List<Schluessel> schluessel = new ArrayList<>(spieler.getInventar());
+                spieler.setInventar(spieler.getAktuelleAbteilung().gibDurchgang(abteilung).zutrittErlaubt(spieler.getInventar()));
+                if(spieler.getInventar().equals(schluessel)) {
                     Spiel.console("Sie haben den passenden Schluessel leider nicht dabei!");
                     return false;
-                }
-                if(Schluessel.equals(spieler.getInventar())) {
-                    Spiel.console("Die"+spieler.getAktuelleAbteilung().gibDurchgang(abteilung)+" ist leider abgeschlossen.\n");
-                    return false;
-                }
-                spieler.setInventar(Schluessel);
+                }else{
+                    
+                spieler.setInventar(schluessel);
                 Spiel.console("Sie haben den Raum erfolgreich aufgeschlossen.\n");
+            }
             }
             if(spieler.getAktuelleAbteilung().gibDurchgang(abteilung).getIstAußenwelt()) {
                 ausgangGefunden();
             }
+            fuehreKollisionskontrolleDurch();
             spieler.setAktuelleAbteilung(spieler.getAktuelleAbteilung().gibDurchgang(abteilung));
-            Spiel.console(fuehreKollisionskontrolleDurch());
             return true;
         }
         else {
@@ -208,21 +207,20 @@ public class Spielverwaltung {
     private boolean suche() {
         List<Schluessel> funde;
         List<Stoppersocken> socken;
-        if((funde = spieler.getAktuelleAbteilung().nehmeFundsachen())!=null) {
+        if((funde = spieler.getAktuelleAbteilung().nehmeFundsachen()).size()!=0) {
 
             spieler.getInventar().addAll(funde);
-
             Spiel.console("Sie haben einen Schlüssel gefunden!\n");
             
             return true;
         }
         
       
-        if((socken = spieler.getAktuelleAbteilung().getSocken())!=null){
+        if((socken = spieler.getAktuelleAbteilung().getSocken()).size()!=0){
 
                 spieler.getStoppersocken().addAll(socken);
                 Spiel.console("Sie haben einen Stoppersocken gefunden!\n");
-                   return true;
+                return true;
         }
 
         Spiel.console("Hier liegt leider nichts.\n");

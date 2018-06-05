@@ -18,6 +18,8 @@ class Abteilung
     {
         this.name = name;
         durchgaenge = new HashMap<>();
+        fundsachen = new ArrayList<>();
+        socken = new ArrayList<>();
     }
     
     public void setzeSchluessel(Schluessel key) {
@@ -76,21 +78,17 @@ class Abteilung
     }
     
     public List<Schluessel> nehmeFundsachen(){
-        List<Schluessel> var = fundsachen;
-        fundsachen = new ArrayList<>();
+        List<Schluessel> var = this.fundsachen;
+        this.fundsachen = new ArrayList<>();
         return var;
     }
     
     public List<Schluessel> zutrittErlaubt(List<Schluessel> key) {
-        if(schluessel!=null) {
-            if(key.contains(schluessel)) {
+        if(key.contains(schluessel)) {
                 key.remove(schluessel);
                 this.schluessel = null;
-            }
-            return key;
         }
-        return null;
-        
+            return key; 
     }
     
     

@@ -20,6 +20,7 @@ public abstract class NPC {
 		Befehlsdetail neueRichtung = räume.get(rar.nextInt(räume.size()));
 		if(this.aktuelleAbteilung.durchgangVorhanden(neueRichtung)) {
 			this.aktuelleAbteilung = aktuelleAbteilung.gibDurchgang(neueRichtung);
+			Spiel.console(getName()+":"+this.aktuelleAbteilung.gibName());
 			return this.aktuelleAbteilung;
 		}
 		else {
