@@ -2,9 +2,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class NPC {
+public abstract class NPC {
 	
 	private Abteilung aktuelleAbteilung;
+	private Spielverwaltung spielverwaltung;
+	
+	public NPC(Abteilung aktuelleAbteilung, Spielverwaltung spielverwaltung) {
+		this.aktuelleAbteilung = aktuelleAbteilung;
+		this.spielverwaltung = spielverwaltung;
+	}
 	
 	public Abteilung wechsleAbteilung() {
 		List<Befehlsdetail> räume = Arrays.asList(Befehlsdetail.values());
@@ -18,5 +24,7 @@ public class NPC {
 			return wechsleAbteilung();
 		}
 	}
+	
+	public abstract boolean treffeSpieler(Spieler sp);
 
 }
