@@ -1,4 +1,4 @@
- import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +10,6 @@ class Abteilung
     private String name;
     private Map<Befehlsdetail,Abteilung> durchgaenge;
     private Schluessel schluessel;
-    private Stoppersocken socke;
     private List<Schluessel> fundsachen;
     private boolean istAußenwelt = false;
     private List<Stoppersocken> socken;
@@ -23,10 +22,6 @@ class Abteilung
     
     public void setzeSchluessel(Schluessel key) {
         this.schluessel = key;
-    }
-    
-    public void setzeSocken(Stoppersocken socke){
-        this.socke = socke;
     }
     
     public void setzeFundSocken(List<Stoppersocken> socken){

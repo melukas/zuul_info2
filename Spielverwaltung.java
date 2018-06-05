@@ -88,9 +88,7 @@ public class Spielverwaltung {
         Schluessel a1 = new Schluessel();
         i.setzeSchluessel(a1);
         
-        Stoppersocken socke = new Stoppersocken();
-        a.setzeSocken(socke);
-        
+        Stoppersocken socke = new Stoppersocken();   
         List<Stoppersocken> socken = new ArrayList<>();
         socken.add(socke);
         a.setzeFundSocken(socken);
