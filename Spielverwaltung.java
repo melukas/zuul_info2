@@ -48,20 +48,20 @@ public class Spielverwaltung {
         Abteilung a = new Abteilung("Aussichtsplattform");
         Abteilung b = new Abteilung("Sportartikelabteilung");
         Abteilung c = new Abteilung("Fernsehabteilung");
-        Abteilung d = new Abteilung("Aufzugskammer");
+        Abteilung d = new Abteilung("defekten Aufzugskammer");
         Abteilung e = new Abteilung("Musikabteilung");
         Abteilung f = new Abteilung("Feinkostabteilung");
         Abteilung g = new Abteilung("Restaurantplattform");
         Abteilung h = new Abteilung("Videothek");
         Abteilung i = new Abteilung("Besenkammer");
-        Abteilung j = new Abteilung("Aufzugkammer");
+        Abteilung j = new Abteilung("Aufzugkammer 2.OG");
         Abteilung k = new Abteilung("Damenmodeabteilung");
-        Abteilung l = new Abteilung("Aufzugkammer");
+        Abteilung l = new Abteilung("Aufzugkammer 1.OG");
         Abteilung m = new Abteilung("Spielwarenabteilung");
-        Abteilung n = new Abteilung("Aufzugkammer");
+        Abteilung n = new Abteilung("Aufzugkammer 1.OG");
         Abteilung o = new Abteilung("Kindermodeabteilung");
         Abteilung p = new Abteilung("Herrenmodeabteilung");
-        Abteilung q = new Abteilung("Aufzugkammer");
+        Abteilung q = new Abteilung("Aufzugkammer EG");
         Abteilung r = new Abteilung("Verpackkungsabteilung");
         Abteilung s = new Abteilung("Parfümabteilung");
         Abteilung t = new Abteilung("Reiseabteilung");
@@ -117,10 +117,10 @@ public class Spielverwaltung {
         list1.add(a1);
         e.setzeFundsachen(list1);
         
-        Putzfrau p1 = new Putzfrau("Ursula", k, this);
-	npcHinzufuegen(p1);
-	Hausmeister h1 = new Hausmeister("Peter", u, this);
-	npcHinzufuegen(h1);
+        Putzfrau p1 = new Putzfrau("Ursula", c, this);
+        npcHinzufuegen(p1);
+        Hausmeister h1 = new Hausmeister("Peter", u, this);
+        npcHinzufuegen(h1);
     }
 
     /**
@@ -144,8 +144,8 @@ public class Spielverwaltung {
     public void start() {
         spielBeginn();
         while(spielAktiv()) {
-            verarbeiteBefehlsanfragen();
             bewegeNPCs();
+            verarbeiteBefehlsanfragen();
         }
     }
 
@@ -171,7 +171,7 @@ public class Spielverwaltung {
     private void verarbeiteBefehlsanfragen() {
 
         Spiel.console(spieler.getAktuelleAbteilung().gibLangeBeschreibung());
-        Spiel.console("Was wollen Sie tun?");
+        Spiel.console("Was wollen Sie tun?\n\n");
         String benutzereingabe = null;
         BufferedReader eingabe = new BufferedReader(new InputStreamReader(System.in));
         try {
@@ -184,7 +184,6 @@ public class Spielverwaltung {
         if(bh!=null) {
             befehlsAusfuehrung(bh);
         }
-        Spiel.console("# # # # # # # # # # # # # \n");
 
     }
 
@@ -216,19 +215,19 @@ public class Spielverwaltung {
                 List<Schluessel> schluessel = new ArrayList<>(spieler.getInventar());
                 spieler.setInventar(spieler.getAktuelleAbteilung().gibDurchgang(abteilung).zutrittErlaubt(spieler.getInventar()));
                 if(spieler.getInventar().equals(schluessel)) {
-                    Spiel.console("Sie haben den passenden Schluessel leider nicht dabei!");
+                    Spiel.console("***Sie haben den passenden Schluessel leider nicht dabei! ***");
                     return false;
                 }else{
                     
                 spieler.setInventar(schluessel);
-                Spiel.console("Sie haben den Raum erfolgreich aufgeschlossen.\n");
+                Spiel.console("*** Sie haben den Raum erfolgreich aufgeschlossen. ***");
             }
             }
             if(spieler.getAktuelleAbteilung().gibDurchgang(abteilung).getIstAußenwelt()) {
                 ausgangGefunden();
             }
-            fuehreKollisionskontrolleDurch();
             spieler.setAktuelleAbteilung(spieler.getAktuelleAbteilung().gibDurchgang(abteilung));
+            Spiel.console(fuehreKollisionskontrolleDurch());
             return true;
         }
         else {
@@ -238,18 +237,18 @@ public class Spielverwaltung {
     }
     
     private String fuehreKollisionskontrolleDurch() {
-    	for(NPC npc : npcs) {
-			if(npc.getAktuelleAbteilung().equals(spieler.getAktuelleAbteilung())) {
-				return npc.treffeSpieler(spieler);
-			}
-		}
-    	return "\n";
+        for(NPC npc : npcs) {
+            if(npc.getAktuelleAbteilung().equals(spieler.getAktuelleAbteilung())) {
+                return npc.treffeSpieler(spieler);
+            }
+        }
+        return "\n";
     }
     
     private void bewegeNPCs() {
-    	for(NPC npc : npcs) {
-			npc.wechsleAbteilung();
-		}
+        for(NPC npc : npcs) {
+            npc.wechsleAbteilung();
+        }
     }
 
     /**
@@ -264,7 +263,7 @@ public class Spielverwaltung {
         if((funde = spieler.getAktuelleAbteilung().nehmeFundsachen()).size()!=0) {
 
             spieler.getInventar().addAll(funde);
-            Spiel.console("Sie haben einen Schlüssel gefunden!\n");
+            Spiel.console("***Sie haben einen Schlüssel gefunden!");
             
             return true;
         }
@@ -273,11 +272,11 @@ public class Spielverwaltung {
         if((socken = spieler.getAktuelleAbteilung().getSocken()).size()!=0){
 
                 spieler.getStoppersocken().addAll(socken);
-                Spiel.console("Sie haben einen Stoppersocken gefunden!\n");
+                Spiel.console("***Sie haben einen Stoppersocken gefunden!");
                 return true;
         }
 
-        Spiel.console("Hier liegt leider nichts.\n");
+        Spiel.console("***Hier liegt leider nichts.***");
         return false;
     }
 
@@ -286,8 +285,23 @@ public class Spielverwaltung {
      * gibt einen Hilfetext zu den möglichen Befehlen aus.
      */
     private boolean gibHilfetext() {
-        Spiel.console("Folgende Befehle können eingegeben werden:\n- gehe vorne \n- gehe hinten \n- gehe links\n- gehe rechts\n- gehe oben \n- gehe unten\n"+
-        "- suche\n");
+        StringBuilder st = new StringBuilder();
+        st.append("Folgende Befehle können eingegeben werden:\n");
+        for(Map.Entry<Grundbefehl, List<Befehlsdetail>> entry : Befehl.getBefehlListe().entrySet()){
+            st.append("--");
+            st.append(entry.getKey());
+            st.append("--\n");
+            if(entry.getValue()!=null){
+                for(Befehlsdetail dt : entry.getValue()){
+                    st.append("+");
+                    st.append(dt);
+                    st.append("\n");
+                }
+                
+                
+            }
+        }
+        Spiel.console(st.toString());
         return true;
     }
 
@@ -325,14 +339,14 @@ public class Spielverwaltung {
     }
 
     private void npcHinzufuegen(NPC npc) {
-	this.npcs.add(npc);
+    this.npcs.add(npc);
     }
-	
+    
     public void npcLoeschen(NPC npc) {
-	this.npcs.remove(npc);
+    this.npcs.remove(npc);
     }
     
     public List<Abteilung> getAbteilungen(){
-    	return this.abteilungen;
+        return this.abteilungen;
     }
 }

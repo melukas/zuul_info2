@@ -1,5 +1,5 @@
 
-public class Gegenstand
+public abstract class Gegenstand
 {
     private String art;
     

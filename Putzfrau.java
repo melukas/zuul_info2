@@ -9,11 +9,12 @@ public class Putzfrau extends NPC
 
     public String treffeSpieler(Spieler sp) {
                 StringBuilder st = new StringBuilder();
+                st.append("*** *** ***\n");
 		st.append("Muhahaha!!!\n");
 		st.append("Fusse weg - musse putzen!\n");
 		st.append("Sie sind auf die Putzfrau "+getName()+" getroffen!\n\n");
 		
-		if(sp.getStoppersocken() != null) {
+		if(sp.getStoppersocken().size() == 0) {
 			Random rar = new Random();
 			st.append("Leider sind Sie auf ihrem frisch gewischten Boden ausgerutscht");
 			sp.setAktuelleAbteilung(getSpielverwaltung().getAbteilungen().get(rar.nextInt(getSpielverwaltung().getAbteilungen().size())));
@@ -28,7 +29,7 @@ public class Putzfrau extends NPC
 			sp.setStoppersocken(null);
 			getSpielverwaltung().npcLoeschen(this);
 		}
-		
+		st.append("*** *** ***\n");
 		return st.toString();
 		
     }

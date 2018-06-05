@@ -18,10 +18,9 @@ public abstract class NPC {
 		List<Befehlsdetail> räume = Arrays.asList(Befehlsdetail.values());
 		Random rar = new Random();
 		Befehlsdetail neueRichtung = räume.get(rar.nextInt(räume.size()));
-		if(this.aktuelleAbteilung.durchgangVorhanden(neueRichtung)) {
-			this.aktuelleAbteilung = aktuelleAbteilung.gibDurchgang(neueRichtung);
-			Spiel.console(getName()+":"+this.aktuelleAbteilung.gibName());
-			return this.aktuelleAbteilung;
+		if(aktuelleAbteilung.durchgangVorhanden(neueRichtung)) {
+			aktuelleAbteilung = aktuelleAbteilung.gibDurchgang(neueRichtung);
+			return aktuelleAbteilung;
 		}
 		else {
 			return wechsleAbteilung();
@@ -34,16 +33,16 @@ public abstract class NPC {
 		return aktuelleAbteilung;
 	}
 
-	protected void setAktuelleAbteilung(Abteilung aktuelleAbteilung) {
-		this.aktuelleAbteilung = aktuelleAbteilung;
+	protected void setAktuelleAbteilung(Abteilung aktuelleAbteilun) {
+		aktuelleAbteilung = aktuelleAbteilun;
 	}
 
 	protected String getName() {
 		return name;
 	}
 
-	protected void setName(String name) {
-		this.name = name;
+	protected void setName(String nam) {
+		name = nam;
 	}
 
 	protected Spielverwaltung getSpielverwaltung() {

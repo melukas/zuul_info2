@@ -29,6 +29,10 @@ class Befehl
         return detail;
     }
     
+    public static Map<Grundbefehl, List<Befehlsdetail>> getBefehlListe(){
+        return befehlListe;
+    }
+    
     public boolean istGueltigerBefehl() {
     	if(befehlListe.containsKey(grundbefehl)) {
     		if(detail!=null) {
