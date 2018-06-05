@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 public class Putzfrau extends NPC
 {
     public Putzfrau(Abteilung aktuelleAbteilung,Spielverwaltung befehlsverarbeitung) {
