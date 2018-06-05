@@ -205,7 +205,8 @@ public class Spielverwaltung {
     }
 
     private boolean gibHilfetext() {
-        Spiel.console("Dies ist ein Hilfetext!\n");
+        Spiel.console("Folgende Befehle können eingegeben werden:\n- gehe vorne \n- gehe hinten \n- gehe links\n- gehe rechts\n- gehe oben \n- gehe unten\n"+
+        "- suche\n");
         return true;
     }
 
