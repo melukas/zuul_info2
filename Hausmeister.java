@@ -14,26 +14,27 @@ public class Hausmeister extends NPC
         st.append("Hausmeisterspruch!\n");
         st.append("Sie sind auf den Hausmeister "+getName()+" getroffen!\n\n");
         st.append("Um hier durch zu kommen, musst du mir eine Frage beantworten!\n");
-        st.append("Welche Birne wird nicht faul?");
-        Spiel.console(st.toString());
-
-        StringBuilder sb = new StringBuilder();
+        st.append("Welche Birne wird nicht faul?\n");
+        System.out.println(st.toString());
+        st = new StringBuilder();
         BufferedReader eingabe = new BufferedReader(new InputStreamReader(System.in));
         try {
             antwort = eingabe.readLine();
         }
         catch(Exception e) {
-            Spiel.console("Es ist folgender ein Fehler aufgetreten: "+e.getMessage());
+            return("Es ist folgender ein Fehler aufgetreten: "+e.getMessage());
         }
 
         if(antwort.equals("Glühbirne")){
-            sb.append("Richtige Antwort!\nSuper, du hast es geschafft, der Hausmeister lässt dich vorbei.");
+            st.append("Richtige Antwort!\nSuper, du hast es geschafft, der Hausmeister lässt dich vorbei.");
             getSpielverwaltung().npcLoeschen(this);
+            return st.toString();
         }else{
-            sb.append("Das war leider die falsche Antwort! \nSo lässt dich der Hausmeister nicht vorbei.");
-            treffeSpieler(sp);
+            if(sp.getVorherigeAbteilung()!=null){
+                sp.setAktuelleAbteilung(sp.getVorherigeAbteilung());
+            }
+            st.append("Das war leider die falsche Antwort! \nSo lässt dich der Hausmeister nicht vorbei.");
+            return st.toString();
         }
-
-        return sb.toString();
     }    
 }

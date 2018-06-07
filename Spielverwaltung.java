@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
 
 /**
  * Die Klasse Spielverwaltung dient der allgemeinen Verwaltung
@@ -19,6 +20,9 @@ public class Spielverwaltung {
     private Spieler spieler;
     private List<NPC> npcs;
     private List<Abteilung> abteilungen;
+    private Timer timer;
+    private long timeLeft;
+    private long spieldauer;
 
 
     /**
@@ -27,11 +31,16 @@ public class Spielverwaltung {
      * sowie die Befehlsverarbeitung an
      * @param name Name des Spielers
      */
-    public Spielverwaltung(String name) {
+    public Spielverwaltung(String name, long spieldauer) {
+        this.spieldauer = spieldauer;
         quitBefehl = false;
         spieler = new Spieler(name);
+        
         verarbeitung = new Befehlsverarbeitung();
         abteilungen = new ArrayList<>();
+        
+        timer = new Timer();
+        
         npcs = new ArrayList<>();
         kaufhausAnlegen();
         befehlsSetup();
@@ -143,6 +152,7 @@ public class Spielverwaltung {
      */
     public void start() {
         spielBeginn();
+        timer.schedule(new Zeitsteuerung(this), spieldauer);
         while(spielAktiv()) {
             bewegeNPCs();
             verarbeiteBefehlsanfragen();
@@ -316,6 +326,14 @@ public class Spielverwaltung {
         Spiel.console("Sie haben soeben das Spiel beendet.\n");
         return true;
     }
+    
+    /**
+     * Die Methode wird bei Ablauf der Zeit von der Zeitsteuerung aufgerufen.
+     */
+    public void beendeSpiel(){
+        this.quitBefehl = true;
+        Spiel.console("Sie haben es leider nicht rechtzeitig geschafft das Kaufhaus zu verlassen.\n");
+    }
 
     /**
      * Methode wird aufgerufen wenn der Spieler sich in der 
@@ -351,4 +369,6 @@ public class Spielverwaltung {
     public List<Abteilung> getAbteilungen(){
         return this.abteilungen;
     }
+    
+    
 }

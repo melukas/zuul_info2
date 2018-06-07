@@ -10,6 +10,8 @@ public class Spieler {
     
     private Abteilung aktuelleAbteilung;
     
+    private Abteilung vorherigeAbteilung;
+    
     private List<Schluessel> inventar;
     
     private List<Stoppersocken> socken;
@@ -55,7 +57,25 @@ public class Spieler {
      * @param aktuelleAbteilung neue Abteilung
      */
     public void setAktuelleAbteilung(Abteilung aktuelleAbteilung) {
+        this.vorherigeAbteilung = this.aktuelleAbteilung;
         this.aktuelleAbteilung = aktuelleAbteilung;
+    }
+    
+     /**
+     * Methode gibt die Abteilung zurück, in der sich der Spieler gerade befindet,
+     * @return aktuelle Abteilung
+     */
+    public Abteilung getVorherigeAbteilung() {
+        return vorherigeAbteilung;
+    }
+
+    /**
+     * Methode setzt die Abteilung in der sich der Spieler befindet
+     * auf die übergebene Abteilung.
+     * @param aktuelleAbteilung neue Abteilung
+     */
+    public void setVorherigeAbteilung(Abteilung aktuelleAbteilung) {
+        this.vorherigeAbteilung = vorherigeAbteilung;
     }
 
     /**

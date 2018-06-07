@@ -85,7 +85,7 @@ class Abteilung
     
     private String gibAbteilungenAlsString()
     {
-        String ergebnis = "Durchg�nge:";
+        String ergebnis = "Durchgänge:";
         Set<Befehlsdetail> keys = durchgaenge.keySet();
         for(Iterator<Befehlsdetail> iter = keys.iterator(); iter.hasNext(); )
             ergebnis += " " + iter.next();
