@@ -4,13 +4,20 @@
  */
 public abstract class Gegenstand
 {
-    private String art;
+    private String name;
     
     /**
      * Konstruktor der Klasse Gegenstand.
      */
-    public Gegenstand(String art){
-        this.art = art;
+    public Gegenstand(String name){
+        this.name = name;
+    }
+    
+    /**
+     * Gibt den Namen des aktuellen Gegenstands.
+     */
+    public String getName(){
+        return this.name;
     }
 
     
