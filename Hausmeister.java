@@ -28,11 +28,16 @@ public class Hausmeister extends NPC
     public String treffeSpieler(Spieler sp) {
         StringBuilder st = new StringBuilder();
         st.append("*** *** ***\n");
-        st.append("Muhahaha!!!\n");
-        st.append("Hausmeisterspruch!\n");
+        
+        st.append("Moooooooin!!!\n");
         st.append("Sie sind auf den Hausmeister "+getName()+" getroffen!\n\n");
         st.append("Um hier durch zu kommen, musst du mir eine Frage beantworten!\n");
-        st.append("Welche Birne wird nicht faul?\n");
+        st.append("Was ist Fu Fu?\n");
+        st.append("a: Türkischer Milchreis\n");
+        st.append("b: Suppe aus Vietnam\n");
+        st.append("c: Afrikanische Beilage\n");
+        
+        
         System.out.println(st.toString());
         st = new StringBuilder();
         BufferedReader eingabe = new BufferedReader(new InputStreamReader(System.in));
@@ -43,7 +48,7 @@ public class Hausmeister extends NPC
             return("Es ist folgender ein Fehler aufgetreten: "+e.getMessage());
         }
 
-        if(antwort.equals("Glühbirne")){
+        if(antwort.equals("c")){
             st.append("Richtige Antwort!\nSuper, du hast es geschafft, der Hausmeister lässt dich vorbei.");
             getSpielverwaltung().npcLoeschen(this);
             return st.toString();
