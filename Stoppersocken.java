@@ -1,13 +1,15 @@
 
 /**
- * Beschreiben Sie hier die Klasse Stoppersocken.
+ * Klasse Stoppersocken, mit der man die Putzfrau umgehen kann.
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Lukas Kiffmeyer, Marie Hölscher 
+ * @version 1
  */
 public class Stoppersocken extends Gegenstand
 {
-    
+     /**
+     * Konstruktor der Klasse Stoppersocken.
+     */
     public Stoppersocken()
     {
      super("Stoppersocken");   

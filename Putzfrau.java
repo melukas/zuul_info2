@@ -1,12 +1,29 @@
 
 import java.util.Random;
 
+/**
+ * Klasse Putzfrau als Unterklasse des NPC.
+ * @author Lukas Kiffmeyer, Marie Hölscher
+ * @version 1
+ */
 public class Putzfrau extends NPC
 {
+    /**
+     * Konstruktor der Klasse Putzfrau.
+     * @param name Name der Putzfrau
+     * @param aktuelleAbteilung Abteilung der Putzfrau
+     * @param befehlsverarbeitung Spielverwaltung
+     */
     public Putzfrau(String name, Abteilung aktuelleAbteilung,Spielverwaltung befehlsverarbeitung) {
     super(name, aktuelleAbteilung, befehlsverarbeitung);
     }
 
+    /**
+     * Methode die Aktion auslöst, wenn der Spieler auf die Putzfrau trifft. 
+     * Wenn der Spieler keinen Stoppersocken hat, wird er in einen beliebigen 
+     * Raum katapultiert. Ansonsten verschwindet die Putzfrau.
+     * @param sp Spieler
+     */
     public String treffeSpieler(Spieler sp) {
                 StringBuilder st = new StringBuilder();
                 st.append("*** *** ***\n");

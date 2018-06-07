@@ -55,8 +55,11 @@ class Abteilung
         this.fundsachen = fundsachen;
     }
 
-    /**
-     * 
+     /**
+     * Methode setzt alle Ausgaenge eines bestimmten Raumes, 
+     * sowie die anschließenden Räume auf die Gegensätze.
+     * @param richtung Ausgangsrichtung
+     * @param abteilung Abteilung
      */
     public void setzeAusgang(Befehlsdetail richtung, Abteilung abteilung) 
     {

@@ -1,12 +1,30 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+/**
+ * Abgeleitete Klasse Hausmeister von der Klasse NPC.
+ * @author Lukas Kiffmeyer, Marie Hölscher
+ * @version 1
+ */
 public class Hausmeister extends NPC
 {
     private String antwort;
+    
+     /**
+     * Konstruktor der Klasse Hausmeister
+     * @param name Name des Hausmeisters
+     * @param aktuelleAbteilung Abteilung des Hausmeisters
+     * @param spielverwaltung Spielverwaltung
+     */
     public Hausmeister(String name, Abteilung aktuelleAbteilung,Spielverwaltung spielverwaltung) {
         super(name, aktuelleAbteilung, spielverwaltung);
     }
 
+    
+    /**
+     * Methode die Aktion ausführt wenn der Spiele auf den Hausmeister getroffen ist.
+     * Der Spieler muss eine Frage richtig beantworten um in die Abteilung eintreten zu können.
+     * @param sp Spieler
+     */
     public String treffeSpieler(Spieler sp) {
         StringBuilder st = new StringBuilder();
         st.append("*** *** ***\n");

@@ -94,6 +94,10 @@ public class Spieler {
        return socken;
     }
     
+    /**
+     * Methode setzt den Stoppersocken auf den übergebenen Stoppersocken 
+     * @param stoppersocken Socken
+     */
     public void setStoppersocken(List<Stoppersocken> stoppersocken) {
         this.socken = stoppersocken;
     }

@@ -355,14 +355,26 @@ public class Spielverwaltung {
         return true;
     }
 
+    /**
+     * Methode fügt ein neues NPC der NPC-Liste hinzu.
+     * @param npc Hinzuzufügendes NPC
+     */
     private void npcHinzufuegen(NPC npc) {
     this.npcs.add(npc);
     }
     
+    /**
+     * Methode löscht ein bestimmtes NPC aus der NPC-Liste.
+     * @param npc Zu löschendes NPC
+     */
     public void npcLoeschen(NPC npc) {
     this.npcs.remove(npc);
     }
     
+    /**
+     * Methode gibt die Liste mit allen Abteilungen zurück.
+     * @return Liste mit Abteilungen
+     */
     public List<Abteilung> getAbteilungen(){
         return this.abteilungen;
     }

@@ -2,10 +2,21 @@
 import java.util.StringTokenizer;
 
 
-
+/**
+ * Klasse Befehlsverarbeitung kümmert sich nach Eingabe
+ * eines Befehles durch den Spieler um die entsprechende
+ * Verarbeitung.
+ * @author Lukas Kiffmeyer, Marie Hölscher
+ * @version 1
+ */
 class Befehlsverarbeitung 
 {
 
+     /**
+     * Methode unterteilt die Eingabe des Benutzers in Grundbefehl und
+     * Befehlsdetail und gibt falls vorhanden den richtigen Befehl zurück.
+     * @return eingegebener Befehl
+     */
     public Befehl liefereBefehl(String benutzereingabe) 
     {
         String grundbefehl = null;
