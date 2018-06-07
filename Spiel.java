@@ -10,7 +10,7 @@ public class Spiel
      */
     public void start() 
     {   
-        Spielverwaltung sp = new Spielverwaltung("Peter",3000);
+        Spielverwaltung sp = new Spielverwaltung("Peter",300000l);
         sp.start();
     }
 

@@ -169,9 +169,9 @@ public class Spielverwaltung {
         StringBuilder st = new StringBuilder();
         st.append("Herzlich Willkommen zum Kaufhaus-Spiel!\n\nSie befinden sich in einem Kaufhaus und müssen den Ausgang"+
         " finden. \nLeider wird Ihnen dies nicht so einfach fallen, \ndenn in den vielen verschiedenen Abteilungen gibt es viele Hindernisse. \n"+
-        "Ihnen wird immer angezeigt in welchem Raum Sie sich aktuell befinden.\n\nFolgende Eingabebefehle sind erlaubt:\n"+
-        "- gehe sueden \n- gehe norden \n- gehe westen\n- gehe osten\n- gehe oben \n- gehe unten\n- suche \n- hilfe\n- beenden\n\nLos gehts und viel Spaß!\n");
+        "Ihnen wird immer angezeigt in welchem Raum Sie sich aktuell befinden.\n");
         Spiel.console(st.toString());
+        gibHilfetext();
     }
 
     /**
@@ -259,7 +259,6 @@ public class Spielverwaltung {
         for(NPC npc : npcs) {
             
             npc.wechsleAbteilung();
-            Spiel.console(npc.getName()+":"+npc.getAktuelleAbteilung().gibName());
         }
     }
 
@@ -308,9 +307,7 @@ public class Spielverwaltung {
                     st.append("+");
                     st.append(dt);
                     st.append("\n");
-                }
-                
-                
+                }     
             }
         }
         Spiel.console(st.toString());
