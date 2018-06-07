@@ -39,7 +39,7 @@ public class Spielverwaltung {
         verarbeitung = new Befehlsverarbeitung();
         abteilungen = new ArrayList<>();
         
-        timer = new Timer();
+        timer = new Timer(true);
         
         npcs = new ArrayList<>();
         kaufhausAnlegen();
@@ -109,6 +109,7 @@ public class Spielverwaltung {
         u.setzeAusgang(Befehlsdetail.osten,v );
         v.setzeAusgang(Befehlsdetail.osten,w );
         x.setzeAusgang(Befehlsdetail.norden,y );
+        w.setzeAusgang(Befehlsdetail.norden,x);
 
         y.setIstAußenwelt(true);
         
@@ -117,7 +118,7 @@ public class Spielverwaltung {
 
         List<Stoppersocken> socken = new ArrayList<>();
         socken.add(socke);
-        a.setzeFundSocken(socken);
+        p.setzeFundSocken(socken);
         
         Schluessel a1 = new Schluessel();
         i.setzeSchluessel(a1);
@@ -126,7 +127,7 @@ public class Spielverwaltung {
         list1.add(a1);
         e.setzeFundsachen(list1);
         
-        Putzfrau p1 = new Putzfrau("Ursula", c, this);
+        Putzfrau p1 = new Putzfrau("Ursula", k, this);
         npcHinzufuegen(p1);
         Hausmeister h1 = new Hausmeister("Peter", u, this);
         npcHinzufuegen(h1);
@@ -157,6 +158,7 @@ public class Spielverwaltung {
             bewegeNPCs();
             verarbeiteBefehlsanfragen();
         }
+        timer.cancel();
     }
 
     /**
